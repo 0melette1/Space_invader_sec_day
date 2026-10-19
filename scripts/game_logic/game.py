@@ -111,12 +111,8 @@ class Game:
         self.score = 0
         self.power_ups = PowerUpManager(self)
         self.paused = False
-        self.save_slots = [None, None, None]
-        self.selected_save_slot = 0
-        self.save_name_input = ""
         self.current_music = None
         self.player_name = ""  # Will be set at startup
-        self.load_saves_from_file()
         self.init_gpio()
         self.cheat_codes = {
             "D4A52B11": "invincible",
@@ -571,7 +567,6 @@ class Game:
     def draw_pause_menu(self):
         menu_options = [
             self.lang.get_string("pause_resume", "Resume"),
-            self.lang.get_string("pause_save", "Save Game"),
             self.lang.get_string("pause_return_menu", "Return to Menu"),
             self.lang.get_string("pause_exit", "Exit Game")
         ]
@@ -638,78 +633,15 @@ class Game:
                             self.power_ups.resume_powerups()
                             return
                         elif selected_option == 1:
-                            self.show_save_slot_menu()
-                        elif selected_option == 2:
                             # Ending the game loop drops back into the main menu loop
                             self.reset_game_state()
                             self.paused = False
                             self.game_over = True
                             return
-                        elif selected_option == 3:
+                        elif selected_option == 2:
                             print("DEBUG: Exit Game selected from pause menu")
                             pygame.quit()
                             quit()
-
-    def show_save_slot_menu(self):
-        selected_slot = 0
-        name_input = ""
-
-        while True:
-            self.screen.fill(self.BLACK)
-            title = self.big_font.render(self.lang.get_string("save_slot_title", "Select Save Slot"), True, self.YELLOW)
-            self.screen.blit(title, (self.screen_width // 2 - title.get_width() // 2, 50))
-
-            slot_y = 150
-            for i in range(3):
-                slot_rect = pygame.Rect(200, slot_y, 800, 100)
-                color = self.GREEN if i == selected_slot else self.WHITE
-                pygame.draw.rect(self.screen, color, slot_rect, 2)
-
-                if self.save_slots[i]:
-                    save = self.save_slots[i]
-                    info_text = f"{save['name']} - {self.lang.get_string('ui_level', 'Level')} {save['level']} | {save['timestamp']}"
-                else:
-                    info_text = self.lang.get_string("empty_slot", "Empty Slot!")
-
-                text_surf = self.font.render(info_text, True, color)
-                self.screen.blit(text_surf, (220, slot_y + 35))
-                slot_y += 120
-
-            for event in pygame.event.get():
-                if event.type == pygame.KEYDOWN:
-                    if event.key == pygame.K_DOWN:
-                        selected_slot = (selected_slot + 1) % 3
-                    elif event.key == pygame.K_UP:
-                        selected_slot = (selected_slot - 1) % 3
-                    elif event.key == pygame.K_RETURN:
-                        self.get_save_name(selected_slot)
-                        return
-                    elif event.key == pygame.K_ESCAPE:
-                        return
-
-            pygame.display.flip()
-
-    def delete_all_saves(self):
-        confirm_text = self.font.render(
-            self.lang.get_string("confirm_delete_all_saves", "Confirm delete ALL saves? (Y/N)"), True, self.RED)
-        self.screen.blit(confirm_text, (self.screen_width // 2 - 150, 400))
-        pygame.display.flip()
-
-        while True:
-            for event in pygame.event.get():
-                if event.type == pygame.KEYDOWN:
-                    if event.key == pygame.K_y:
-                        try:
-                            self.save_slots = [None, None, None]
-                            with open('saves.json', 'w') as f:
-                                json.dump(self.save_slots, f)
-                            self.display_feedback(
-                                self.lang.get_string("feedback_all_saves_deleted", "All saves deleted!"), self.RED)
-                            return
-                        except Exception as e:
-                            print(f"Error deleting saves: {e}")
-                    elif event.key in [pygame.K_n, pygame.K_ESCAPE]:
-                        return
 
     def draw_ui(self):
         # Player name at top left
@@ -1198,134 +1130,9 @@ class Game:
                 return True
         return False
 
-    def save_game(self, slot, name):
-        current_saves = []
-        if os.path.exists('saves.json'):
-            try:
-                with open('saves.json', 'r') as f:
-                    current_saves = json.load(f)
-                current_saves = (current_saves + [None] * 3)[:3]
-            except (json.JSONDecodeError, FileNotFoundError):
-                current_saves = [None, None, None]
-        else:
-            current_saves = [None, None, None]
-
-        # Create the new game state
-        game_state = {
-            'name': name,
-            'level': "BOSS" if self.boss_fight else self.level,
-            'boss_fight': self.boss_fight,
-            'minigame_trigger': self.boss.minigame_triggered,
-            'boss_ragemode': self.boss.rage_mode,
-            'score': self.score,
-            'questions_asked': self.questions_asked,
-            'asked_questions': self.asked_questions,
-            'question_difficulty': self.question_difficulty,
-            'play_time': self.play_time,
-            'player_name': self.player_name,
-            'player_barricades': [
-                [{'x': block['rect'].x, 'y': block['rect'].y} for block in barricade]
-                for barricade in self.barricade_manager.barricades
-            ],
-
-            'player': {
-                'lives': self.player.lives,
-                'x': self.player.x,
-                'y': self.player.y,
-                'invulnerable': self.player.invulnerable,
-                'invulnerable_time': time.time() - self.player.invulnerable_timer,
-            },
-            'enemies': self.enemy_manager.enemies,
-            'enemy_direction': self.enemy_manager.direction,
-            'enemy_speed': self.enemy_manager.enemy_speed,
-            'enemy_shotprob': self.enemy_manager.shoot_prob,
-            'boss_health': self.boss.health if self.boss_fight else None,
-            'player_bullets': [(b[0], b[1], b[2], b[3]) for b in self.bullet_manager.player_bullets],
-            'enemy_bullets': [(b[0], b[1]) for b in self.bullet_manager.enemy_bullets],
-            'boss_bullets': [(b[0], b[1], b[2], b[3]) for b in self.bullet_manager.boss_bullets],
-            'power_ups': {
-                'active': self.power_ups.power_up_active,
-                'type': self.power_ups.current_power_up,
-                'positions': self.power_ups.power_ups.copy(),  # Save all power-up positions
-                'timer': self.power_ups.power_up_timer - time.time() if self.power_ups.power_up_active else 0,
-                'spawn_time': self.power_ups.spawn_time
-            },
-            'timestamp': datetime.datetime.now().strftime("%Y-%m-%d %H:%M")
-        }
-
-        current_saves[slot] = game_state
-
-        # Write back all slots to the file
-        try:
-            with open('saves.json', 'w') as f:
-                json.dump(current_saves, f)
-            self.save_slots = current_saves
-            self.display_feedback(self.lang.get_string("feedback_game_saved", "Game Saved!"), self.GREEN)
-        except IOError as e:
-            print(f"Error saving game: {e}")
-            self.display_feedback(self.lang.get_string("feedback_save_error", "Error saving game!"), self.RED)
-
-    def get_save_name(self, slot):
-        name = ""
-        while True:
-            self.screen.fill(self.BLACK)
-
-            pygame.draw.rect(self.screen, self.GREEN, (150, 150, 900, 300), 3)
-
-            # Title text
-            prompt = self.big_font.render(self.lang.get_string("name_your_save", "NAME YOUR SAVE FILE"), True,
-                                          self.YELLOW)
-            self.screen.blit(prompt, (self.screen_width // 2 - prompt.get_width() // 2, 180))
-
-            # Input box with blinking cursor
-            input_rect = pygame.Rect(self.screen_width // 2 - 200, 280, 400, 40)
-            pygame.draw.rect(self.screen, self.WHITE, input_rect, 2)
-            name_text = self.font.render(name, True, self.GREEN)
-            self.screen.blit(name_text, (input_rect.x + 10, input_rect.y + 5))
-
-            # Blinking cursor
-            if int(time.time() * 2) % 2 == 0:
-                cursor_x = input_rect.x + 10 + name_text.get_width() + 2
-                pygame.draw.line(self.screen, self.GREEN, (cursor_x, input_rect.y + 5),
-                                 (cursor_x, input_rect.y + 35), 3)
-
-            # Instructions
-            instr_text = self.font.render(
-                self.lang.get_string("save_name_instruction", "Press ESC to cancel | ENTER to save"), True, self.WHITE)
-            self.screen.blit(instr_text, (self.screen_width // 2 - instr_text.get_width() // 2, 350))
-
-            for event in pygame.event.get():
-                if event.type == pygame.KEYDOWN:
-                    if event.key == pygame.K_ESCAPE:
-                        return
-                    elif event.key == pygame.K_RETURN:
-                        if name.strip():
-                            self.save_game(slot, name.strip())
-                            return
-                    elif event.key == pygame.K_BACKSPACE:
-                        name = name[:-1]
-                    else:
-                        if len(name) < 20 and event.unicode.isprintable():
-                            name += event.unicode
-
-            pygame.display.flip()
-
     def check_server_availability(self):
         # Local storage is always available
         return True
-
-    def load_saves_from_file(self):
-        """Loads saved game data from saves.json at startup."""
-        if os.path.exists('saves.json'):
-            try:
-                with open('saves.json', 'r') as f:
-                    loaded_saves = json.load(f)
-                    # Ensure exactly 3 slots, filling with None if necessary
-                    self.save_slots = (loaded_saves + [None] * 3)[:3]
-            except (json.JSONDecodeError, FileNotFoundError):
-                self.save_slots = [None, None, None]
-        else:
-            self.save_slots = [None, None, None]
 
     def create_loading_screen(self):
         self.screen.fill(self.BLACK)

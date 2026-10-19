@@ -28,8 +28,8 @@ python MAIN.py
 The game follows an object-oriented architecture with the main `Game` class orchestrating all components:
 
 **scripts/game_logic/game.py** - Central game controller
-- Manages game state, levels, scoring, and save/load system
-- Handles menu systems (main menu, pause menu, save/load dialogs)
+- Manages game state, levels and scoring
+- Handles menu systems (main menu, pause menu: Resume / Return to Menu / Exit Game)
 - Orchestrates all managers (enemy, bullet, power-up, barricade)
 - Implements Raspberry Pi GPIO integration (7-segment display, LEDs, RFID cheat detection)
 - Manages background music and sound effects per game state
@@ -74,12 +74,6 @@ GPIO pins are configured in `init_gpio()` method of `Game` class.
 - Automatically used for leaderboard entries when game ends (win or lose)
 - Character counter shows current length (e.g., "5/20")
 - Each new game prompts for a new player name (single prompt, only when starting game)
-
-### Save System
-
-- **saves.json**: Stores 3 save slots with game state (level, score, lives, power-ups, timestamps)
-- Save/load accessible from pause menu
-- Automatic timestamping for save management
 
 ### Assets Organization
 
