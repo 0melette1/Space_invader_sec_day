@@ -1,0 +1,9 @@
+# Core dependencies (required on all platforms)
+pygame==2.6.1
+requests==2.32.5
+pillow==12.3.0
+
+# Raspberry Pi only dependencies (will fail on Windows/Mac - skip these on non-Pi systems)
+# On Windows/Mac, use: pip install -r requirements-windows.txt
+RPi.GPIO==0.7.1
+mfrc522==0.0.7

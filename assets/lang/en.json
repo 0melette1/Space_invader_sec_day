@@ -1,0 +1,347 @@
+{
+  "welcome_message": "Welcome to Cyber Security Invaders!",
+  "enter_name_prompt": "Enter your name:",
+  "menu_new_game": "New Game",
+  "menu_leaderboard": "Leaderboard",
+  "menu_instructions": "Instructions",
+  "menu_exit": "Exit",
+  "pause_resume": "Resume",
+  "pause_save": "Save Game",
+  "pause_return_menu": "Return to Menu",
+  "pause_exit": "Exit Game",
+  "paused_text": "PAUSED",
+  "game_over_text": "GAME OVER!",
+  "win_text": "YOU WIN! Score:",
+  "final_score_text": "Final Score",
+  "ui_player": "Player",
+  "ui_lives": "Lives",
+  "ui_score": "Score",
+  "ui_level": "Level",
+  "ui_boss": "BOSS",
+  "ui_powerup": "Power Up!",
+  "feedback_correct": "Correct!",
+  "feedback_incorrect": "Incorrect!",
+  "feedback_game_saved": "Game Saved!",
+  "empty_slot": "Empty Slot!",
+  "save_slot_title": "Select Save Slot",
+  "name_your_save": "NAME YOUR SAVE FILE",
+  "leaderboard_date": "Date",
+  "leaderboard_time": "Time",
+  "feedback_level_complete": "Level {level} Complete!",
+  "feedback_boss_defeated": "Boss Defeated!",
+  "question_counter": "Question",
+  "difficulty_label": "Difficulty",
+  "difficulty_1": "easy",
+  "difficulty_2": "medium",
+  "difficulty_3": "hard",
+  "instr_qst_2": "A correct answer saves your life and adds points",
+  "instr_qst_3": "A wrong answer costs a life and 250 points",
+  "instr_qst_4": "After a correct answer the next question is harder",
+  "correct_answer_label": "Correct answer",
+  "press_any_key": "Press any key to continue",
+  "boss_rage_mode": "(Rage Mode)",
+  "minigame_title": "HACKING MINIGAME",
+  "minigame_instr_1": "Find the hidden word in the grid",
+  "minigame_instr_2": "The letters follow each other in a straight line, even diagonally",
+  "minigame_instr_3": "Arrows move, ENTER selects a letter",
+  "minigame_instr_4": "DEL or BACKSPACE removes the last letter",
+  "minigame_instr_5": "Time limit: {seconds} s",
+  "minigame_reward": "Success: the boss loses {damage} HP. Failure: rage mode.",
+  "minigame_target": "Hidden word",
+  "minigame_time": "TIME",
+  "minigame_start": "Press any key to start...",
+  "minigame_success": "ACCESS GRANTED!",
+  "minigame_success_effect": "The boss loses {damage} HP!",
+  "minigame_fail": "ACCESS DENIED!",
+  "minigame_fail_effect": "The boss is entering rage mode!",
+  "cybersecurity_questions": [
+    {"difficulty": 1,
+     "question": "An email signed by the CEO asks you to urgently buy gift cards for a client and send the codes. What do you do?",
+     "options": [
+       "A) Buy them, the sender address is correct",
+       "B) Reply to the email to confirm it first",
+       "C) Call the CEO on a number you know"
+     ],
+     "answer": "C",
+     "explanation": "The sender name and even the address can be faked, and a reply goes straight to the attacker. Verify unusual requests through a contact you already know."},
+    {"difficulty": 1,
+     "question": "You step away from your desk for two minutes. What do you do with your computer?",
+     "options": [
+       "A) Lock it (Win + L)",
+       "B) Turn off the monitor",
+       "C) Close the open documents"
+     ],
+     "answer": "A",
+     "explanation": "A dark monitor or closed documents stop nobody - a few seconds at an unlocked computer are enough. Win + L takes one second."},
+    {"difficulty": 1,
+     "question": "In the car park you find a USB stick labelled \"Salaries 2026\". What do you do?",
+     "options": [
+       "A) Plug it into a spare PC to find the owner",
+       "B) Hand it to IT without plugging it in",
+       "C) Scan it with antivirus first, then open it"
+     ],
+     "answer": "B",
+     "explanation": "A tempting label is bait. A USB stick can pretend to be a keyboard and run commands the moment it is plugged in, before antivirus even reacts."},
+    {"difficulty": 1,
+     "question": "Which of these passwords is the hardest to crack?",
+     "options": [
+       "A) tractor-violin-cloud-mustard",
+       "B) P@ssw0rd2026!",
+       "C) Xk9#q!Lm"
+     ],
+     "answer": "A",
+     "explanation": "Length beats complexity. Swapping letters for @ or 0 is the first thing cracking tools try, and 8 characters are too few."},
+    {"difficulty": 1,
+     "question": "Someone from \"IT support\" calls and needs your password to fix your account. What do you do?",
+     "options": [
+       "A) Tell them, IT needs it for the fix",
+       "B) Tell them and change it right afterwards",
+       "C) Refuse and report the call to IT"
+     ],
+     "answer": "C",
+     "explanation": "Real IT never needs your password - they can reset it. Changing it afterwards is too late: an attacker needs only minutes."},
+    {"difficulty": 1,
+     "question": "Which sign most reliably gives away a phishing email?",
+     "options": [
+       "A) It pushes you to log in or pay via a link",
+       "B) It is full of spelling and grammar mistakes",
+       "C) It comes from an unknown sender"
+     ],
+     "answer": "A",
+     "explanation": "Today's phishing is often flawless and can come from a known but hacked address. The real warning sign is the request: click, log in, pay - and fast."},
+    {"difficulty": 1,
+     "question": "You get an email that looks suspicious. What is the best thing to do?",
+     "options": [
+       "A) Delete it so nobody clicks on it",
+       "B) Report it to IT or the security team",
+       "C) Forward it to colleagues as a warning"
+     ],
+     "answer": "B",
+     "explanation": "A report lets IT block the message for everyone. Forwarding it spreads the dangerous link even further."},
+    {"difficulty": 1,
+     "question": "A pop-up on a news website says your browser is outdated and offers a download. What do you do?",
+     "options": [
+       "A) Download it, updates are important",
+       "B) Download it, then scan it with antivirus",
+       "C) Close it, updates don't come from websites"
+     ],
+     "answer": "C",
+     "explanation": "Fake update pop-ups are a common way to spread malware. Real updates come from the system, the browser itself or IT - never from a web page."},
+    {"difficulty": 1,
+     "question": "A person in a courier vest carrying a parcel asks you to let them through the office door. What do you do?",
+     "options": [
+       "A) Send them to reception",
+       "B) Let them in, they are clearly a courier",
+       "C) Let them in but walk with them"
+     ],
+     "answer": "A",
+     "explanation": "A vest and a parcel are the easiest disguise there is. Every visitor goes through reception, however they look."},
+    {"difficulty": 1,
+     "question": "What is the main benefit of two-factor authentication (2FA)?",
+     "options": [
+       "A) You no longer need a strong, unique password",
+       "B) A stolen password alone won't log anyone in",
+       "C) It also protects the computer from viruses"
+     ],
+     "answer": "B",
+     "explanation": "2FA adds a step a thief does not have, such as a code from your phone. You still need a strong password, and 2FA does not stop malware."},
+    {"difficulty": 1,
+     "question": "Which address do you use at Notino to report security issues and suspicious emails?",
+     "options": [
+       "A) notino.security@gmail.com",
+       "B) security@notino-help.com",
+       "C) security@notino.com"
+     ],
+     "answer": "C",
+     "explanation": "Report anything suspicious to security@notino.com. Addresses on other domains, such as gmail.com or notino-help.com, do not belong to Notino."},
+    {"difficulty": 2,
+     "question": "Your bank's website is mybank.com. Which link really leads to it?",
+     "options": [
+       "A) https://mybank.com.secure-login.net/",
+       "B) https://mybank-com.net/login",
+       "C) https://secure.mybank.com/login"
+     ],
+     "answer": "C",
+     "explanation": "What counts is the end of the domain, right before the first single slash. The first link belongs to secure-login.net, the second to mybank-com.net."},
+    {"difficulty": 2,
+     "question": "A link in an email reads www.notino.com. How do you safely check where it really leads?",
+     "options": [
+       "A) Hover over it and read the real address",
+       "B) The link text shows the address, that is enough",
+       "C) Open it in a private browser window"
+     ],
+     "answer": "A",
+     "explanation": "Link text and destination can differ. Hovering (or a long press on a phone) shows the real address; a private window does not protect you."},
+    {"difficulty": 2,
+     "question": "A colleague writes from a new Teams account: \"I lost my phone, send me the code that just came to you by SMS.\" What do you do?",
+     "options": [
+       "A) Send it, I know the colleague's name and photo",
+       "B) Keep it and call them on a known number",
+       "C) Send it, then change my password right away"
+     ],
+     "answer": "B",
+     "explanation": "The code is the key to your account - most likely someone is logging in as you right now. Nobody legitimate ever needs your code."},
+    {"difficulty": 2,
+     "question": "A long-standing supplier emails that their bank account has changed and asks you to pay the next invoice to the new one. What do you do?",
+     "options": [
+       "A) Confirm it by phone on a number from the contract",
+       "B) Pay to the new account, the email address is theirs",
+       "C) Ask them to confirm it by replying to the email"
+     ],
+     "answer": "A",
+     "explanation": "Fake bank detail changes (BEC) cost companies millions. The supplier's mailbox may be hacked, so confirm only through a contact you already had."},
+    {"difficulty": 2,
+     "question": "A service you used years ago reports a data leak. You had the same password at work. What now?",
+     "options": [
+       "A) Change the password on the leaked service only",
+       "B) Nothing, I no longer use that account",
+       "C) Change it everywhere I use it, work included"
+     ],
+     "answer": "C",
+     "explanation": "Attackers automatically try leaked passwords on other services. Every account with the same password is at risk, not just the leaked one."},
+    {"difficulty": 2,
+     "question": "You need to quickly translate an internal contract. Which tool may you use?",
+     "options": [
+       "A) Any free online translator",
+       "B) Only a tool approved by the company",
+       "C) A popular AI chat, if I delete the chat after"
+     ],
+     "answer": "B",
+     "explanation": "Free online tools and AI chats often keep what you paste and may train on it. Deleting the chat does not delete the data on their servers."},
+    {"difficulty": 2,
+     "question": "Where is it safest to keep your work passwords?",
+     "options": [
+       "A) In an approved password manager",
+       "B) In a password-protected Excel file",
+       "C) Saved in the browser on a shared PC"
+     ],
+     "answer": "A",
+     "explanation": "A password manager encrypts passwords and creates unique ones. Excel protection is easy to break and a shared computer is used by others too."},
+    {"difficulty": 2,
+     "question": "You need to send a customer list to an external partner. What is right?",
+     "options": [
+       "A) Email the whole list, the partner signed a contract",
+       "B) Upload it to my personal cloud and share the link",
+       "C) Send only the needed data via an approved channel"
+     ],
+     "answer": "C",
+     "explanation": "Share only the data the partner really needs, and only through approved channels. A personal cloud is outside company control and the data may stay there for good."},
+    {"difficulty": 2,
+     "question": "An SMS from \"DPD\" says delivery failed - reschedule at dpd-redelivery.com. You are expecting a parcel. What do you do?",
+     "options": [
+       "A) Use the link, I am expecting a parcel",
+       "B) Check it in the courier's official app",
+       "C) Reply STOP to the SMS to be safe"
+     ],
+     "answer": "B",
+     "explanation": "Scammers send these to thousands of people - someone is always expecting a parcel. Track deliveries only through the app or site you open yourself."},
+    {"difficulty": 2,
+     "question": "At 11 pm your phone shows a login approval request you did not trigger. Then another one. What do you do?",
+     "options": [
+       "A) Deny, change my password and report it",
+       "B) Approve it, it is probably just a glitch",
+       "C) Deny it each time, it will stop by itself"
+     ],
+     "answer": "A",
+     "explanation": "Someone already has your password and hopes you will approve out of fatigue. Denying is not enough - change the password and report it."},
+    {"difficulty": 2,
+     "question": "A website shows a padlock (HTTPS) in the address bar. What does it guarantee?",
+     "options": [
+       "A) That the website is genuine and safe",
+       "B) Only that the connection is encrypted",
+       "C) That the site was checked for viruses"
+     ],
+     "answer": "B",
+     "explanation": "Phishing sites get HTTPS certificates for free too. The padlock only means nobody can read the traffic on the way - not who you are talking to."},
+    {"difficulty": 3,
+     "question": "What does the HSTS header protect against?",
+     "options": [
+       "A) SQL injection in web forms",
+       "B) Password brute-forcing on the login page",
+       "C) Downgrading the connection to plain HTTP"
+     ],
+     "answer": "C",
+     "explanation": "HSTS tells the browser to open the site only over HTTPS, so an attacker in the middle cannot quietly switch you to unencrypted HTTP (SSL stripping)."},
+    {"difficulty": 3,
+     "question": "A vulnerability has a CVSS score of 9.8. What does that tell you?",
+     "options": [
+       "A) It is critical and should be patched urgently",
+       "B) It is already being actively exploited by attackers",
+       "C) A patch for it is already available from the vendor"
+     ],
+     "answer": "A",
+     "explanation": "CVSS rates severity from 0 to 10; 9.0 and above is critical. It does not say whether a patch exists or whether attackers already use it - that is tracked separately."},
+    {"difficulty": 3,
+     "question": "Which measure reliably prevents SQL injection?",
+     "options": [
+       "A) Hiding database error messages",
+       "B) Parameterized queries",
+       "C) Encrypting the whole database"
+     ],
+     "answer": "B",
+     "explanation": "With parameterized queries (prepared statements) the input is always treated as data, never as part of the SQL command. Hiding errors does not stop the attack, it only hides it."},
+    {"difficulty": 3,
+     "question": "What does a Cross-Site Scripting (XSS) vulnerability let an attacker do?",
+     "options": [
+       "A) Read any file straight from the server's disk",
+       "B) Take over the database server's system",
+       "C) Run their JavaScript in other users' browsers"
+     ],
+     "answer": "C",
+     "explanation": "XSS slips the attacker's script into a page other people view, where it can steal their session or act on their behalf. Defences: escaping output and a Content Security Policy."},
+    {"difficulty": 3,
+     "question": "Why is a unique salt added to each password before hashing?",
+     "options": [
+       "A) So identical passwords get different hashes",
+       "B) So the password can be decrypted if needed",
+       "C) So that verifying the password is faster"
+     ],
+     "answer": "A",
+     "explanation": "Thanks to the salt, two users with the same password get different hashes, and precomputed rainbow tables become useless."},
+    {"difficulty": 3,
+     "question": "Which algorithm is suitable for storing user passwords?",
+     "options": [
+       "A) SHA-256 with a salt",
+       "B) Argon2 or bcrypt",
+       "C) MD5 with a salt"
+     ],
+     "answer": "B",
+     "explanation": "SHA-256 and MD5 are fast, so attackers try billions of guesses per second even with a salt. Argon2 and bcrypt are deliberately slow, which makes guessing very expensive."},
+    {"difficulty": 3,
+     "question": "What does a DMARC record do for a company's email domain?",
+     "options": [
+       "A) Encrypts emails sent between mail servers",
+       "B) Scans email attachments for malware",
+       "C) Says what to do with mail failing SPF/DKIM"
+     ],
+     "answer": "C",
+     "explanation": "DMARC builds on SPF and DKIM: the domain owner says whether forged mail should be rejected or quarantined, and receives reports about it."},
+    {"difficulty": 3,
+     "question": "What does the 3-2-1 backup rule say?",
+     "options": [
+       "A) Back up 3 times a day, keep 2 weeks, test 1 a month",
+       "B) 3 copies of data, on 2 media types, 1 off-site",
+       "C) 3 servers, in 2 data centres, 1 copy in the cloud"
+     ],
+     "answer": "B",
+     "explanation": "Three copies of the data, on two different types of media, one of them off-site - ideally offline. Then at least one copy survives even ransomware."},
+    {"difficulty": 3,
+     "question": "What is a pass-the-hash attack?",
+     "options": [
+       "A) Using a stolen hash itself to log in",
+       "B) Cracking a hash by trying every possible password",
+       "C) Sending a malicious hash in a phishing email"
+     ],
+     "answer": "A",
+     "explanation": "In Windows networks (NTLM) the hash itself works as proof of identity, so an attacker can log in with it without ever cracking it."},
+    {"difficulty": 3,
+     "question": "The 2020 SolarWinds Orion attack is a typical example of what?",
+     "options": [
+       "A) A DDoS attack that took down a cloud provider",
+       "B) Ransomware spreading through email",
+       "C) A supply chain attack via a software update"
+     ],
+     "answer": "C",
+     "explanation": "Attackers planted malicious code into an official Orion update, which thousands of customers installed themselves. Through the supplier they reached its customers without breaking in directly."}
+  ]
+}

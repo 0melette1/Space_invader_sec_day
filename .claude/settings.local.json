@@ -1,0 +1,12 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(python test_score_save.py)",
+      "Bash(del \"C:\\Users\\lukas.cigler\\Downloads\\Cyber-Security-Invaders-master\\test_score_save.py\")",
+      "Bash(rm \"C:\\Users\\lukas.cigler\\Downloads\\Cyber-Security-Invaders-master\\test_score_save.py\")",
+      "WebSearch"
+    ],
+    "deny": [],
+    "ask": []
+  }
+}
